@@ -30,7 +30,7 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    background: url('images/particles.png');
+    background: url('css/images/particles.png');
     background-size: cover;
     opacity: 0.35;
     animation: driftNebula 40s linear infinite;
@@ -58,7 +58,7 @@ body {
 }
 
 #loader img {
-    width: 260px;
+    width: 260px;        /* bigger */
     animation: loaderPulse 2.5s ease-in-out infinite;
 }
 
@@ -80,10 +80,32 @@ body {
     z-index: 2;
 }
 
+/* FLOATING COSMIC AURA */
+.hero-aura {
+    position: absolute;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(217,179,255,0.6), rgba(0,0,0,0));
+    filter: blur(80px);
+    animation: auraFloat 10s ease-in-out infinite;
+    z-index: 0;
+}
+
+@keyframes auraFloat {
+    0% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(40px); }
+    100% { transform: translateX(-50%) translateY(0); }
+}
+
+/* HERO CONTENT */
 .hero-content {
     max-width: 500px;
     position: relative;
     z-index: 2;
+    text-align: center;
 }
 
 .hero h1 {
@@ -118,7 +140,7 @@ body {
     100% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4)); }
 }
 
-/* STORE BUTTONS */
+/* STORE BUTTONS — CLEAN + CENTERED */
 .store-buttons {
     display: flex;
     justify-content: center;
@@ -134,18 +156,19 @@ body {
 }
 
 .store-item a img {
-    width: 200px;
+    width: 200px;        /* bigger button */
     margin-bottom: 15px;
     filter: drop-shadow(0 0 12px rgba(217,179,255,0.8));
     transition: transform 0.25s ease, filter 0.25s ease;
 }
+
 
 .store-item a img:hover {
     transform: scale(1.08);
     filter: drop-shadow(0 0 20px rgba(255,215,0,1));
 }
 
-/* DEVICE PREVIEWS */
+/* DEVICE PREVIEWS — iPhone + Samsung */
 .device-preview {
     width: 260px;
     height: 520px;
@@ -159,6 +182,15 @@ body {
     transform: scale(1.05);
 }
 
+/* HERO IMAGE (OLD MOCKUP) */
+.hero-image img {
+    width: 350px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(217,179,255,0.3);
+    position: relative;
+    z-index: 2;
+}
+
 /* GLASS PANELS */
 header, section, footer {
     background: rgba(0, 0, 0, 0.45);
@@ -167,13 +199,37 @@ header, section, footer {
     border-radius: 20px;
     backdrop-filter: blur(8px);
     box-shadow: 0 0 25px rgba(217, 179, 255, 0.25);
+}
+
+header, section, footer {
+    background: rgba(0, 0, 0, 0.45);
+    padding: 60px 10%;
+    margin: 40px auto;
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 25px rgba(217, 179, 255, 0.25);
+
+    /* ⭐ NEW — centers all content inside */
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
-/* FEATURES */
+.store-buttons {
+    display: flex;
+    justify-content: center;   /* centers the row */
+    align-items: center;        /* centers vertically */
+    gap: 60px;                  /* spacing between iPhone + Samsung */
+    margin-top: 30px;
+    flex-wrap: nowrap;          /* keeps them side-by-side */
+}
+.store-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* centers each phone + button */
+    text-align: center;
+}
+/* FEATURES SECTION — COSMIC UPGRADE */
 .features {
     text-align: center;
     display: flex;
@@ -195,16 +251,21 @@ header, section, footer {
     border-radius: 18px;
     width: 42%;
     min-width: 280px;
-    box-shadow: 0 0 20px rgba(217, 179, 255, 0.25),
-                0 0 35px rgba(255, 215, 0, 0.15);
+
+    /* Cosmic glow */
+    box-shadow:
+        0 0 20px rgba(217, 179, 255, 0.25),
+        0 0 35px rgba(255, 215, 0, 0.15);
+
     border: 1px solid rgba(255, 215, 0, 0.25);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature:hover {
     transform: translateY(-6px);
-    box-shadow: 0 0 25px rgba(217,179,255,0.45),
-                0 0 45px rgba(255,215,0,0.35);
+    box-shadow:
+        0 0 25px rgba(217, 179, 255, 0.45),
+        0 0 45px rgba(255, 215, 0, 0.35);
 }
 
 .feature h3 {
@@ -219,34 +280,90 @@ header, section, footer {
     font-size: 1rem;
     opacity: 0.9;
 }
+.features h2 {
+    font-size: 3rem;
+    margin-bottom: 45px;
 
-/* COMMUNITY */
+    /* Cosmic colors */
+    color: #D9B3FF;
+
+    /* Glow */
+    text-shadow:
+        0 0 12px rgba(217,179,255,0.8),
+        0 0 25px rgba(255,215,0,0.6),
+        0 0 45px rgba(217,179,255,0.4);
+
+    /* Subtle float animation */
+    animation: titleFloat 6s ease-in-out infinite;
+}
+
+@keyframes titleFloat {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+}
+/* COMMUNITY SECTION — COSMIC GLOW */
 .community {
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    /* spacing */
     padding: 50px 10%;
 }
 
+/* Title Glow */
 .community h2 {
     font-size: 3rem;
     margin-bottom: 25px;
     color: #D9B3FF;
-    text-shadow: 0 0 12px rgba(217,179,255,0.8),
-                 0 0 25px rgba(255,215,0,0.6),
-                 0 0 45px rgba(217,179,255,0.4);
+
+    text-shadow:
+        0 0 12px rgba(217,179,255,0.8),
+        0 0 25px rgba(255,215,0,0.6),
+        0 0 45px rgba(217,179,255,0.4);
+
+    animation: titleFloat 6s ease-in-out infinite;
 }
 
+/* Underline cosmic bar */
+.community h2::after {
+    content: "";
+    display: block;
+    width: 140px;
+    height: 4px;
+    margin: 15px auto 0;
+
+    background: linear-gradient(90deg,
+        rgba(255,215,0,0.8),
+        rgba(217,179,255,0.9),
+        rgba(255,215,0,0.8)
+    );
+
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(217,179,255,0.7);
+}
+
+/* Paragraph styling */
 .community p {
     max-width: 700px;
     font-size: 1.2rem;
     color: #EDEDED;
     opacity: 0.95;
     line-height: 1.6;
+
+    /* soft glow */
+    text-shadow: 0 0 8px rgba(217,179,255,0.4);
 }
 
-/* TRUST */
+/* Float animation reused */
+@keyframes titleFloat {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+}
+/* TRUST SECTION — COSMIC UPGRADE */
 .trust {
     text-align: center;
     display: flex;
@@ -255,6 +372,39 @@ header, section, footer {
     padding: 60px 10%;
 }
 
+/* Title Glow */
+.trust h2 {
+    font-size: 3rem;
+    margin-bottom: 40px;
+    color: #D9B3FF;
+
+    text-shadow:
+        0 0 12px rgba(217,179,255,0.8),
+        0 0 25px rgba(255,215,0,0.6),
+        0 0 45px rgba(217,179,255,0.4);
+
+    animation: titleFloat 6s ease-in-out infinite;
+}
+
+/* Cosmic underline */
+.trust h2::after {
+    content: "";
+    display: block;
+    width: 160px;
+    height: 4px;
+    margin: 15px auto 0;
+
+    background: linear-gradient(90deg,
+        rgba(255,215,0,0.8),
+        rgba(217,179,255,0.9),
+        rgba(255,215,0,0.8)
+    );
+
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(217,179,255,0.7);
+}
+
+/* Trust cards layout */
 .trust-cards {
     display: flex;
     justify-content: center;
@@ -263,24 +413,78 @@ header, section, footer {
     max-width: 1100px;
 }
 
+/* Individual trust card */
 .trust-card {
     background: rgba(0, 0, 0, 0.35);
     padding: 35px;
     border-radius: 18px;
     width: 28%;
     min-width: 260px;
-    box-shadow: 0 0 20px rgba(217, 179, 255, 0.25),
-                0 0 35px rgba(255, 215, 0, 0.15);
+
+    box-shadow:
+        0 0 20px rgba(217, 179, 255, 0.25),
+        0 0 35px rgba(255, 215, 0, 0.15);
+
     border: 1px solid rgba(255, 215, 0, 0.25);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
 }
 
 .trust-card:hover {
     transform: translateY(-6px);
+    box-shadow:
+        0 0 25px rgba(217,179,255,0.45),
+        0 0 45px rgba(255,215,0,0.35);
 }
 
-/* CTA */
+/* Trust card titles */
+.trust-card h4 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    color: #D9B3FF;
+    font-size: 1.3rem;
+    text-shadow: 0 0 10px rgba(217,179,255,0.6);
+}
+
+/* Trust card text */
+.trust-card p {
+    color: #EDEDED;
+    opacity: 0.95;
+    line-height: 1.5;
+}
+
+/* Store buttons inside trust section */
+.trust .store-buttons {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+/* Bigger glowing store buttons */
+.trust .store-buttons img {
+    width: 200px; /* bigger */
+    filter: drop-shadow(0 0 15px rgba(217,179,255,0.8));
+    transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.trust .store-buttons img:hover {
+    transform: scale(1.12);
+    filter: drop-shadow(0 0 25px rgba(255,215,0,1));
+}
+
+/* Float animation reused */
+@keyframes titleFloat {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+}
+.trust-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* centers image + title + text */
+    text-align: center;    /* centers text */
+}
+/* CTA SECTION — COSMIC REVAMP */
 .cta {
     text-align: center;
     display: flex;
@@ -288,9 +492,62 @@ header, section, footer {
     align-items: center;
     padding: 70px 10%;
     margin-top: 40px;
+
+    /* soft cosmic aura */
     position: relative;
 }
 
+.cta::before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+
+    background: radial-gradient(circle,
+        rgba(217,179,255,0.35),
+        rgba(0,0,0,0)
+    );
+
+    filter: blur(80px);
+    z-index: -1;
+}
+
+/* CTA Title Glow */
+.cta h2 {
+    font-size: 3rem;
+    margin-bottom: 25px;
+    color: #D9B3FF;
+
+    text-shadow:
+        0 0 12px rgba(217,179,255,0.8),
+        0 0 25px rgba(255,215,0,0.6),
+        0 0 45px rgba(217,179,255,0.4);
+
+    animation: titleFloat 6s ease-in-out infinite;
+}
+
+/* Cosmic underline */
+.cta h2::after {
+    content: "";
+    display: block;
+    width: 160px;
+    height: 4px;
+    margin: 15px auto 0;
+
+    background: linear-gradient(90deg,
+        rgba(255,215,0,0.8),
+        rgba(217,179,255,0.9),
+        rgba(255,215,0,0.8)
+    );
+
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(217,179,255,0.7);
+}
+
+/* CTA paragraph */
 .cta p {
     max-width: 700px;
     font-size: 1.25rem;
@@ -298,106 +555,225 @@ header, section, footer {
     opacity: 0.95;
     margin-bottom: 40px;
     line-height: 1.6;
+
+    text-shadow: 0 0 8px rgba(217,179,255,0.4);
 }
 
-/* FOOTER */
+/* CTA store buttons */
+.cta .store-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+/* Bigger glowing buttons */
+.cta .store-buttons img {
+    width: 210px; /* bigger */
+    filter: drop-shadow(0 0 15px rgba(217,179,255,0.8));
+    transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.cta .store-buttons img:hover {
+    transform: scale(1.12);
+    filter: drop-shadow(0 0 25px rgba(255,215,0,1));
+}
+
+/* Float animation */
+@keyframes titleFloat {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+}
+/* FOOTER — COSMIC REVAMP */
 footer {
     text-align: center;
     padding: 40px 10%;
     background: rgba(0, 0, 0, 0.55);
     border-radius: 20px;
     margin-top: 60px;
-    box-shadow: 0 0 25px rgba(217,179,255,0.25),
-                0 0 45px rgba(255,215,0,0.15);
+
+    box-shadow:
+        0 0 25px rgba(217,179,255,0.25),
+        0 0 45px rgba(255,215,0,0.15);
+
     position: relative;
 }
 
+/* Cosmic aura behind footer */
+footer::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 700px;
+
+    background: radial-gradient(circle,
+        rgba(217,179,255,0.35),
+        rgba(0,0,0,0)
+    );
+
+    filter: blur(90px);
+    z-index: -1;
+}
+
+/* Footer logo glow */
 .footer-logo {
     width: 160px;
     margin-bottom: 20px;
+
     filter: drop-shadow(0 0 20px rgba(217,179,255,0.8))
             drop-shadow(0 0 35px rgba(255,215,0,0.6));
+
+    animation: footerFloat 6s ease-in-out infinite;
 }
 
-/* BREATHING ORB */
+@keyframes footerFloat {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}
+
+/* Footer text */
+footer p {
+    color: #D9B3FF;
+    font-size: 1rem;
+    opacity: 0.9;
+
+    text-shadow:
+        0 0 10px rgba(217,179,255,0.6),
+        0 0 20px rgba(255,215,0,0.4);
+}
+/* Breathing Orb Container */
 #breathing-orb-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 60px 0 80px;
+    position: relative;
 }
 
+/* Main Breathing Orb */
 .breathing-orb {
     width: 240px;
     height: 240px;
     border-radius: 50%;
+    position: relative;
+
     background: radial-gradient(circle,
         rgba(255,215,0,0.9),
         rgba(217,179,255,0.7),
         rgba(0,0,0,0.9)
     );
-    box-shadow: 0 0 35px rgba(255,215,0,0.8),
-                0 0 55px rgba(217,179,255,0.6);
+
+    box-shadow:
+        0 0 35px rgba(255,215,0,0.8),
+        0 0 55px rgba(217,179,255,0.6);
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     animation: orbBreath 6s ease-in-out infinite;
 }
 
+/* Logo inside orb */
 .breathing-orb img {
     width: 130px;
+    filter: drop-shadow(0 0 20px rgba(255,215,0,0.9));
 }
 
-/* MOBILE — TRUE RESPONSIVE LAYOUT */
+/* Orbiting Lotus */
+.orbiting-lotus {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    top: 50%;
+    left: 50%;
+    transform-origin: -120px -120px; /* radius of orbit */
+    animation: lotusOrbit 6s linear infinite;
+    filter: drop-shadow(0 0 15px rgba(255,215,0,1));
+}
+
+/* Breathing animation */
+@keyframes orbBreath {
+    0%   { transform: scale(0.92); box-shadow: 0 0 25px rgba(255,215,0,0.7); }
+    50%  { transform: scale(1.08); box-shadow: 0 0 55px rgba(255,215,0,1); }
+    100% { transform: scale(0.92); box-shadow: 0 0 25px rgba(255,215,0,0.7); }
+}
+
+/* Orbit animation */
+@keyframes lotusOrbit {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 @media (max-width: 480px) {
 
+    /* GLOBAL PANEL FIX */
     header, section, footer {
         padding: 20px 4% !important;
         margin: 15px auto !important;
         border-radius: 12px !important;
+        backdrop-filter: blur(4px) !important;
     }
 
+    /* HERO */
     .hero h1 {
         font-size: 1.7rem !important;
+        line-height: 1.2 !important;
     }
 
     .hero p {
         font-size: 1rem !important;
+        margin-bottom: 20px !important;
     }
 
     .zenzone-logo {
         width: 110px !important;
     }
 
+    /* STORE BUTTONS */
     .store-buttons {
         flex-direction: column !important;
         gap: 18px !important;
+        align-items: center !important;
     }
 
+    /* DEVICE PREVIEWS */
     .device-preview {
         width: 140px !important;
         height: auto !important;
+        margin-top: 10px !important;
     }
 
-    .feature,
+    /* FEATURE CARDS */
+    .feature {
+        width: 100% !important;
+        min-width: unset !important;
+        padding: 25px !important;
+    }
+
+    /* TRUST CARDS */
     .trust-card {
         width: 100% !important;
         min-width: unset !important;
         padding: 25px !important;
     }
 
+    /* BREATHING ORB */
     .breathing-orb {
         width: 140px !important;
         height: 140px !important;
         box-shadow: none !important;
     }
 
+    /* FOOTER */
     .footer-logo {
         width: 110px !important;
     }
 }
-
-/* LARGE MOBILE */
 @media (max-width: 768px) {
 
     header, section, footer {
@@ -423,8 +799,6 @@ footer {
         height: 170px !important;
     }
 }
-
-/* TABLETS */
 @media (max-width: 1024px) {
 
     header, section, footer {
