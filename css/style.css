@@ -710,89 +710,105 @@ footer p {
 }
 
 @media (max-width: 480px) {
+
+    /* GLOBAL PANEL FIX */
     header, section, footer {
-        padding: 25px 5%;
-        margin: 20px auto;
+        padding: 25px 5% !important;
+        margin: 20px auto !important;
+        border-radius: 12px !important;
     }
 
+    /* HERO */
     .hero h1 {
-        font-size: 1.9rem;
+        font-size: 1.8rem !important;
+    }
+
+    .hero p {
+        font-size: 1rem !important;
     }
 
     .zenzone-logo {
-        width: 120px;
+        width: 120px !important;
     }
 
+    /* STORE BUTTONS */
     .store-buttons {
-        flex-direction: column;
-        gap: 20px;
+        flex-direction: column !important;
+        gap: 20px !important;
+        align-items: center !important;
     }
 
+    /* DEVICE PREVIEWS */
     .device-preview {
-        width: 160px;
-        height: auto;
+        width: 150px !important;
+        height: auto !important;
     }
 
+    /* FEATURE CARDS */
     .feature {
-        width: 100%;
-        min-width: unset;
+        width: 100% !important;
+        min-width: unset !important;
     }
 
+    /* TRUST CARDS */
     .trust-card {
-        width: 100%;
-        min-width: unset;
+        width: 100% !important;
+        min-width: unset !important;
     }
 
+    /* BREATHING ORB */
     .breathing-orb {
-        width: 150px;
-        height: 150px;
+        width: 150px !important;
+        height: 150px !important;
+    }
+
+    /* FOOTER LOGO */
+    .footer-logo {
+        width: 120px !important;
     }
 }
 @media (max-width: 768px) {
-    header, section, footer {
-        padding: 40px 7%;
-    }
 
-    .hero h1 {
-        font-size: 2.3rem;
+    header, section, footer {
+        padding: 40px 7% !important;
     }
 
     .store-buttons {
-        flex-wrap: wrap;
-        gap: 30px;
+        flex-wrap: wrap !important;
+        gap: 30px !important;
     }
 
     .device-preview {
-        width: 200px;
+        width: 200px !important;
     }
 
-    .feature {
-        width: 90%;
-    }
-
+    .feature,
     .trust-card {
-        width: 90%;
+        width: 90% !important;
     }
 
     .breathing-orb {
-        width: 180px;
-        height: 180px;
+        width: 180px !important;
+        height: 180px !important;
     }
 }
 @media (max-width: 1024px) {
+
     header, section, footer {
-        padding: 50px 8%;
+        padding: 50px 8% !important;
     }
 
-    .feature {
-        width: 45%;
-    }
-
+    .feature,
     .trust-card {
-        width: 45%;
+        width: 45% !important;
     }
 
     .device-preview {
-        width: 240px;
+        width: 240px !important;
+    }
+
+    .breathing-orb {
+        width: 200px !important;
+        height: 200px !important;
     }
 }
