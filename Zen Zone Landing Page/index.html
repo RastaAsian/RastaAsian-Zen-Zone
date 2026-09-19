@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zen Zone – Find Calm, Anywhere</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- LOADING ANIMATION -->
+    <div id="loader">
+        <img src="css/images/Zen Zone Logo (2).png" alt="Zen Zone Loading Logo">
+    </div>
+
+    <!-- NEBULA PARTICLES -->
+    <div class="nebula-particles"></div>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Find Calm, Anywhere</h1>
+            <p>Guided meditations, breathing exercises, and a thriving spiritual community.</p>
+
+            <!-- Cosmic Gold Lotus Logo -->
+            <div class="logo-container">
+                <img src="css/images/Zen Zone Reimagined.png" alt="Zen Zone Logo" class="zenzone-logo">
+            </div>
+
+            <!-- App Store & Play Store Buttons with Previews -->
+            <div class="store-buttons">
+                <div class="store-item">
+                    <a href="https://apps.apple.com/us/app/zen-zone-meditation-asmr/id1637634893" target="_blank" rel="noopener noreferrer">
+                        <img src="css/images/download on app store 1.png" alt="Download on the App Store">
+                    </a>
+                    <img src="css/images/iphone.png" alt="Zen Zone iPhone Preview" class="device-preview">
+                </div>
+
+                <div class="store-item">
+                    <a href="https://play.google.com/store/apps/details?id=com.atlas.meditation&hl=en-US" target="_blank" rel="noopener noreferrer">
+                        <img src="css/images/get it on play store 1.png" alt="Get it on Google Play">
+                    </a>
+                    <img src="css/images/Samsung.png" alt="Zen Zone Samsung Preview" class="device-preview">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- FEATURES SECTION -->
+    <section class="features">
+        <h2>What Zen Zone Offers</h2>
+
+        <div class="feature-list">
+            <div class="feature">
+                <h3>Profile Customization</h3>
+                <p>Create a personalized spiritual space that reflects your journey.</p>
+            </div>
+
+            <div class="feature">
+                <h3>Follow, Like & Comment</h3>
+                <p>Connect with others through meaningful interactions and shared experiences.</p>
+            </div>
+
+            <div class="feature">
+                <h3>Real-Time Notifications</h3>
+                <p>Stay updated with community posts, discussions, and meditation reminders.</p>
+            </div>
+
+            <div class="feature">
+                <h3>Google Sign-In</h3>
+                <p>Quick and secure access to your Zen Zone account.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMUNITY SECTION -->
+    <section class="community">
+        <h2>A Safe Space to Grow</h2>
+        <p>Join a thriving community of spiritual seekers. Share your experiences, explore new practices, and connect with like‑minded individuals.</p>
+    </section>
+
+    <!-- TRUST SECTION -->
+    <section class="trust">
+        <h2>Built for Peace of Mind</h2>
+
+        <div class="trust-cards">
+
+            <div class="trust-card">
+                <img src="css/images/security.png" alt="Certified Developers Icon">
+                <h4>Certified Developers</h4>
+                <p>Crafted by experienced mobile developers dedicated to wellness technology.</p>
+            </div>
+
+            <div class="trust-card">
+                <img src="css/images/privacy.png" alt="Privacy Icon">
+                <h4>Privacy First</h4>
+                <p>Your data stays yours is never shared with third parties.</p>
+            </div>
+
+            <div class="trust-card">
+                <img src="css/images/Secure.png" alt="Security Icon">
+                <h4>Secure & Protected</h4>
+                <p>Advanced authentication and encrypted accounts for complete peace of mind.</p>
+            </div>
+
+            <!-- Linked Store Buttons -->
+            <div class="store-buttons">
+                <a href="https://apps.apple.com/us/app/zen-zone-meditation-asmr/id1637634893" target="_blank" rel="noopener noreferrer">
+                    <img src="css/images/download on app store 1.png" alt="Download on the App Store">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.atlas.meditation&hl=en-US" target="_blank" rel="noopener noreferrer">
+                    <img src="css/images/get it on play store 1.png" alt="Get it on Google Play">
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta">
+        <h2>Start Your Journey Today</h2>
+        <p>Download Zen Zone and begin your path to inner peace.</p>
+
+        <div class="store-buttons">
+            <a href="https://apps.apple.com/us/app/zen-zone-meditation-asmr/id1637634893" target="_blank" rel="noopener noreferrer">
+                <img src="css/images/download on app store 1.png" alt="Download on the App Store">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.atlas.meditation&hl=en-US" target="_blank" rel="noopener noreferrer">
+                <img src="css/images/get it on play store 1.png" alt="Get it on Google Play">
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+   <footer>
+    <img src="css/images/Zen Zone Reimagined.png" class="footer-logo" alt="Zen Zone Footer Logo">
+    <p>© 2026 Zen Zone. All rights reserved.</p>
+</footer>
+
+<!-- Breathing orb container (JS will fill this) -->
+<div id="breathing-orb-container"></div>
+
+
+    <!-- LOADER FADE SCRIPT -->
+    <script>
+        window.addEventListener("load", () => {
+            const loader = document.getElementById("loader");
+            loader.style.opacity = "0";
+            setTimeout(() => loader.style.display = "none", 600);
+        });
+    </script>
+<script>
+    window.addEventListener("load", () => {
+        const loader = document.getElementById("loader");
+        loader.style.opacity = "0";
+        setTimeout(() => loader.style.display = "none", 600);
+
+        // Breathing orb
+        const orbContainer = document.getElementById("breathing-orb-container");
+        const orb = document.createElement("div");
+        orb.className = "breathing-orb";
+
+        const logo = document.createElement("img");
+        logo.src = "css/images/Zen Zone Reimagined.png";
+        logo.alt = "Zen Zone Breathing Orb Logo";
+
+        orb.appendChild(logo);
+        orbContainer.appendChild(orb);
+    });
+</script>
+
+
+</body>
+</html>
