@@ -709,3 +709,90 @@ footer p {
     100% { transform: rotate(360deg); }
 }
 
+@media (max-width: 480px) {
+    header, section, footer {
+        padding: 25px 5%;
+        margin: 20px auto;
+    }
+
+    .hero h1 {
+        font-size: 1.9rem;
+    }
+
+    .zenzone-logo {
+        width: 120px;
+    }
+
+    .store-buttons {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .device-preview {
+        width: 160px;
+        height: auto;
+    }
+
+    .feature {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .trust-card {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .breathing-orb {
+        width: 150px;
+        height: 150px;
+    }
+}
+@media (max-width: 768px) {
+    header, section, footer {
+        padding: 40px 7%;
+    }
+
+    .hero h1 {
+        font-size: 2.3rem;
+    }
+
+    .store-buttons {
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+
+    .device-preview {
+        width: 200px;
+    }
+
+    .feature {
+        width: 90%;
+    }
+
+    .trust-card {
+        width: 90%;
+    }
+
+    .breathing-orb {
+        width: 180px;
+        height: 180px;
+    }
+}
+@media (max-width: 1024px) {
+    header, section, footer {
+        padding: 50px 8%;
+    }
+
+    .feature {
+        width: 45%;
+    }
+
+    .trust-card {
+        width: 45%;
+    }
+
+    .device-preview {
+        width: 240px;
+    }
+}
