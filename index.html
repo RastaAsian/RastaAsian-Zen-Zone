@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zen Zone – Find Calm, Anywhere</title>
+
+    <!-- Your external CSS stays separate -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -14,8 +16,8 @@
         <img src="css/images/Zen Zone Logo (2).png" alt="Zen Zone Loading Logo">
     </div>
 
-    <!-- NEBULA PARTICLES -->
-    <div class="nebula-particles"></div>
+    <!-- Rising lotus background container (JS will populate) -->
+    <div class="zen-bg" aria-hidden="true"></div>
 
     <!-- HERO SECTION -->
     <header class="hero">
@@ -28,17 +30,27 @@
                 <img src="css/images/Zen Zone Reimagined.png" alt="Zen Zone Logo" class="zenzone-logo">
             </div>
 
-            <!-- App Store & Play Store Buttons with Previews -->
+            <!-- Floating lotus -->
+            <div class="floating-lotus visible" id="floatingLotus">
+                <img src="css/images/lotus.png" alt="Floating Lotus">
+
+                <div class="lotus-sparkle" style="top: -10px; left: 20px;"></div>
+                <div class="lotus-sparkle" style="top: 30px; left: -30px;"></div>
+                <div class="lotus-sparkle" style="top: 50px; right: -25px;"></div>
+                <div class="lotus-sparkle" style="top: -20px; right: 10px;"></div>
+            </div>
+
+            <!-- Store Buttons -->
             <div class="store-buttons">
                 <div class="store-item">
-                    <a href="https://apps.apple.com/us/app/zen-zone-meditation-asmr/id1637634893" target="_blank" rel="noopener noreferrer">
+                    <a href="https://apps.apple.com/us/app/zen-zone-meditation-asmr/id1637634893" target="_blank">
                         <img src="css/images/download on app store 1.png" alt="Download on the App Store">
                     </a>
                     <img src="css/images/iphone.png" alt="Zen Zone iPhone Preview" class="device-preview">
                 </div>
 
                 <div class="store-item">
-                    <a href="https://play.google.com/store/apps/details?id=com.atlas.meditation&hl=en-US" target="_blank" rel="noopener noreferrer">
+                    <a href="https://play.google.com/store/apps/details?id=com.atlas.meditation&hl=en-US" target="_blank">
                         <img src="css/images/get it on play store 1.png" alt="Get it on Google Play">
                     </a>
                     <img src="css/images/Samsung.png" alt="Zen Zone Samsung Preview" class="device-preview">
@@ -104,12 +116,11 @@
                 <p>Advanced authentication and encrypted accounts for complete peace of mind.</p>
             </div>
 
-            <!-- Linked Store Buttons -->
             <div class="store-buttons">
-                <a href="https://apps.apple.com/us/app/zen-zone-meditation-asmr/id1637634893" target="_blank" rel="noopener noreferrer">
+                <a href="https://apps.apple.com/us/app/zen-zone-meditation-asmr/id1637634893" target="_blank">
                     <img src="css/images/download on app store 1.png" alt="Download on the App Store">
                 </a>
-                <a href="https://play.google.com/store/apps/details?id=com.atlas.meditation&hl=en-US" target="_blank" rel="noopener noreferrer">
+                <a href="https://play.google.com/store/apps/details?id=com.atlas.meditation&hl=en-US" target="_blank">
                     <img src="css/images/get it on play store 1.png" alt="Get it on Google Play">
                 </a>
             </div>
@@ -123,40 +134,35 @@
         <p>Download Zen Zone and begin your path to inner peace.</p>
 
         <div class="store-buttons">
-            <a href="https://apps.apple.com/us/app/zen-zone-meditation-asmr/id1637634893" target="_blank" rel="noopener noreferrer">
+            <a href="https://apps.apple.com/us/app/zen-zone-meditation-asmr/id1637634893" target="_blank">
                 <img src="css/images/download on app store 1.png" alt="Download on the App Store">
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.atlas.meditation&hl=en-US" target="_blank" rel="noopener noreferrer">
+            <a href="https://play.google.com/store/apps/details?id=com.atlas.meditation&hl=en-US" target="_blank">
                 <img src="css/images/get it on play store 1.png" alt="Get it on Google Play">
             </a>
         </div>
     </section>
 
     <!-- FOOTER -->
-   <footer>
-    <img src="css/images/Zen Zone Reimagined.png" class="footer-logo" alt="Zen Zone Footer Logo">
-    <p>© 2026 Zen Zone. All rights reserved.</p>
-</footer>
+    <footer>
+        <img src="css/images/Zen Zone Reimagined.png" class="footer-logo" alt="Zen Zone Footer Logo">
+        <p>© 2026 Zen Zone. All rights reserved.</p>
+    </footer>
 
-<!-- Breathing orb container (JS will fill this) -->
-<div id="breathing-orb-container"></div>
+    <!-- Breathing orb container -->
+    <div id="breathing-orb-container"></div>
 
-
-    <!-- LOADER FADE SCRIPT -->
+    <!-- FULL JAVASCRIPT BELOW -->
     <script>
-        window.addEventListener("load", () => {
-            const loader = document.getElementById("loader");
-            loader.style.opacity = "0";
-            setTimeout(() => loader.style.display = "none", 600);
-        });
-    </script>
-<script>
+    /* ---------------- LOADER ---------------- */
     window.addEventListener("load", () => {
         const loader = document.getElementById("loader");
         loader.style.opacity = "0";
         setTimeout(() => loader.style.display = "none", 600);
+    });
 
-        // Breathing orb
+    /* ---------------- BREATHING ORB ---------------- */
+    window.addEventListener("load", () => {
         const orbContainer = document.getElementById("breathing-orb-container");
         const orb = document.createElement("div");
         orb.className = "breathing-orb";
@@ -168,8 +174,44 @@
         orb.appendChild(logo);
         orbContainer.appendChild(orb);
     });
-</script>
 
+    /* ---------------- HERO FLOATING LOTUS ---------------- */
+    window.addEventListener("load", () => {
+        document.getElementById("floatingLotus").classList.add("visible");
+    });
+
+    /* ---------------- RISING LOTUS BACKGROUND ---------------- */
+    function generateRisingLotus() {
+        const container = document.querySelector(".zen-bg");
+        container.innerHTML = "";
+
+        const COUNT = 24;
+
+        for (let i = 0; i < COUNT; i++) {
+            const lotus = document.createElement("div");
+            lotus.className = "lotus";
+
+            lotus.style.left = Math.random() * 90 + "%";
+            lotus.style.width = (Math.random() * 80 + 60) + "px";
+            lotus.style.opacity = (Math.random() * 0.3 + 0.7).toFixed(2);
+
+            const rise = (Math.random() * 18 + 14).toFixed(2) + "s";
+            const sway = (Math.random() * 4 + 5).toFixed(2) + "s";
+            const shimmer = (Math.random() * 4 + 4).toFixed(2) + "s";
+
+            const riseDelay = "-" + (Math.random() * parseFloat(rise)).toFixed(2) + "s";
+            const swayDelay = "-" + (Math.random() * 2).toFixed(2) + "s";
+            const shimmerDelay = "-" + (Math.random() * 3).toFixed(2) + "s";
+
+            lotus.style.animationDuration = `${rise}, ${sway}, ${shimmer}`;
+            lotus.style.animationDelay = `${riseDelay}, ${swayDelay}, ${shimmerDelay}`;
+
+            container.appendChild(lotus);
+        }
+    }
+
+    window.addEventListener("load", generateRisingLotus);
+    </script>
 
 </body>
 </html>

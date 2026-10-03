@@ -1,46 +1,241 @@
 /* GLOBAL RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+/* Palette and lotus image */
+:root{
+  --zen-dark:  #07102a;
+  --zen-mid:   #2b1f6b;
+  --zen-light: #5b6bd6;
+  --accent:    #8bd3ff;
+  --lotus-url: url("css/images/lotus.png"); /* update to your lotus PNG or SVG */
 }
 
-/* BODY — COSMIC GRADIENT BACKGROUND */
-body {
-    margin: 0;
-    padding: 0;
-    color: #EDEDED;
-    background: linear-gradient(135deg, #000000, #4B0082, #6A0DAD, #FFD700);
-    background-size: 400% 400%;
-    animation: gradientMove 12s ease infinite;
+/* Page gradient (full viewport) */
+html, body {
+  height: 100%;
+  margin: 0;
+  background: linear-gradient(135deg, var(--zen-dark) 0%, var(--zen-mid) 50%, var(--zen-light) 100%);
+  background-size: 200% 200%;
+  animation: zenGradient 18s ease-in-out infinite;
+  color: #EDEDED;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* Gradient animation */
+@keyframes zenGradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* NEBULA PARTICLES */
-.nebula-particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background: url('css/images/particles.png');
-    background-size: cover;
-    opacity: 0.35;
-    animation: driftNebula 40s linear infinite;
-    z-index: 1;
+/* Background container that holds lotus elements (behind content) */
+.zen-bg{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none; /* allow clicks through */
+  overflow: hidden;
 }
 
-@keyframes driftNebula {
-    0% { background-position: 0 0; }
-    100% { background-position: 2000px 2000px; }
+/* Base lotus style: each .lotus is an absolutely positioned rising image */
+.zen-bg .lotus{
+  position: absolute;
+  bottom: -28vh; /* start well below viewport */
+  width: 120px;
+  height: 120px;
+  background-image: var(--lotus-url);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.95;
+  transform-origin: center;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35));
+  will-change: transform, opacity, left, bottom;
+  /* Three independent animations: rise (vertical), sway (translate/rotate), shimmer (filter/opacity) */
+  animation:
+    rise linear infinite,
+    sway ease-in-out infinite,
+    shimmer ease-in-out infinite;
 }
+
+/* Staggered positions, sizes, durations and delays for natural flow */
+.zen-bg .lotus:nth-child(1) { left: 6%;  width: 100px; animation-duration: 18s, 6s, 5s; animation-delay: 0s, 0s, 0s;  opacity:0.98; }
+.zen-bg .lotus:nth-child(2) { left: 18%; width: 140px; animation-duration: 22s, 7s, 6s; animation-delay: 2s, 0.5s, 0.2s; opacity:0.92; }
+.zen-bg .lotus:nth-child(3) { left: 30%; width: 90px;  animation-duration: 16s, 5.5s, 4.5s; animation-delay: 4s, 1s, 0.4s; opacity:0.9;  }
+.zen-bg .lotus:nth-child(4) { left: 42%; width: 130px; animation-duration: 20s, 6.5s, 5.2s; animation-delay: 1s, 0.8s, 0.6s; opacity:0.9;  }
+.zen-bg .lotus:nth-child(5) { left: 54%; width: 110px; animation-duration: 24s, 7.5s, 6.5s; animation-delay: 3s, 1.2s, 0.8s; opacity:0.86; }
+.zen-bg .lotus:nth-child(6) { left: 66%; width: 150px; animation-duration: 19s, 6s, 5s; animation-delay: 5s, 1.6s, 1s; opacity:0.84; }
+.zen-bg .lotus:nth-child(7) { left: 78%; width: 95px;  animation-duration: 21s, 6.8s, 5.6s; animation-delay: 2.5s, 0.9s, 0.5s; opacity:0.88; }
+.zen-bg .lotus:nth-child(8) { left: 86%; width: 120px; animation-duration: 23s, 7.2s, 6.1s; animation-delay: 6s, 1.9s, 1.1s; opacity:0.8;  }
+.zen-bg .lotus:nth-child(9) { left: 12%; width: 80px;  animation-duration: 17s, 5.2s, 4.2s; animation-delay: 7s, 2.2s, 1.4s; opacity:0.9;  }
+.zen-bg .lotus:nth-child(10){ left: 36%; width:160px; animation-duration: 26s, 8s, 6.8s; animation-delay: 8s, 2.6s, 1.6s; opacity:0.78; }
+.zen-bg .lotus:nth-child(11){ left: 60%; width:100px; animation-duration: 18s, 6s, 5s; animation-delay: 9s, 2.9s, 1.8s; opacity:0.85; }
+.zen-bg .lotus:nth-child(12){ left: 92%; width:140px; animation-duration: 28s, 8.5s, 7s; animation-delay: 10s, 3.2s, 2s; opacity:0.8; }
+
+/* Rise animation: start below viewport, move up past top, fade slightly, then reset */
+@keyframes rise {
+  0%   { bottom: -28vh; transform: translateX(0) scale(0.92); opacity: 0.0; }
+  6%   { opacity: 0.85; }
+  50%  { bottom: 60vh; transform: translateX(0) scale(1.02); opacity: 0.98; }
+  90%  { bottom: 110vh; opacity: 0.6; }
+  100% { bottom: 130vh; opacity: 0.0; }
+}
+
+/* Sway animation: small horizontal drift and rotation looped */
+@keyframes sway {
+  0%   { transform: translateX(0) rotate(-2deg); }
+  25%  { transform: translateX(8px) rotate(1.2deg); }
+  50%  { transform: translateX(0) rotate(-1deg); }
+  75%  { transform: translateX(-6px) rotate(1deg); }
+  100% { transform: translateX(0) rotate(-2deg); }
+}
+
+/* Shimmer: subtle brightness/pulse via filter and opacity */
+@keyframes shimmer {
+  0%   { filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35)) brightness(0.95) saturate(1); opacity: 0.92; }
+  50%  { filter: drop-shadow(0 12px 28px rgba(0,0,0,0.28)) brightness(1.08) saturate(1.06); opacity: 1; }
+  100% { filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35)) brightness(0.95) saturate(1); opacity: 0.92; }
+}
+
+/* Make sure transforms compose smoothly (modern browsers) */
+.zen-bg .lotus {
+  /* rise uses bottom; sway uses transform; shimmer uses filter/opacity */
+}
+
+/* Content area sits above background */
+.main-content, main, .content {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+/* Optional floating-lotus container (if you use inline <img> lotus elsewhere) */
+.floating-lotus { display:flex; justify-content:center; margin-top:40px; position:relative; opacity:1; transform:translateY(0); z-index:5; pointer-events:none; }
+
+/* Responsive: scale down lotus on small screens */
+@media (max-width: 900px) {
+  .zen-bg .lotus { width: 72px; height: 72px; }
+  .zen-bg .lotus:nth-child(10){ width: 100px; }
+}
+
+/* Performance tip: reduce number of lotus or simplify animations on very small screens */
+@media (max-width: 480px) {
+  .zen-bg .lotus { width: 56px; height: 56px; animation-duration: calc(18s * 1.2); }
+}
+
+/* Optional sparkle elements (if you add .lotus-sparkle nodes) */
+.lotus-sparkle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(200,150,255,0.6) 60%, transparent 100%);
+  border-radius: 50%;
+  animation: sparkleFloat 5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes sparkleFloat {
+  0% { transform: translateY(0px) scale(1); opacity: 1; }
+  50% { transform: translateY(-40px) scale(1.4); opacity: 0.8; }
+  100% { transform: translateY(0px) scale(1); opacity: 1; }
+}
+
+/* Legacy/unused keyframes removed to avoid duplication */
+
+/* Rise animation: start below viewport, move up past top, fade slightly, then reset */
+@keyframes rise {
+  0%   { bottom: -20vh; transform: translateX(0) scale(0.95); opacity: 0.0; }
+  6%   { opacity: 0.9; }
+  50%  { bottom: 60vh; transform: translateX(0) scale(1.02); opacity: 0.98; }
+  90%  { bottom: 110vh; opacity: 0.6; }
+  100% { bottom: 130vh; opacity: 0.0; }
+}
+
+/* Sway animation: small horizontal drift and rotation looped */
+@keyframes sway {
+  0%   { transform: translateX(0) rotate(-2deg); }
+  25%  { transform: translateX(8px) rotate(1.2deg); }
+  50%  { transform: translateX(0) rotate(-1deg); }
+  75%  { transform: translateX(-6px) rotate(1deg); }
+  100% { transform: translateX(0) rotate(-2deg); }
+}
+
+/* Shimmer: subtle brightness/pulse */
+@keyframes shimmer {
+  0%   { filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35)) brightness(0.95) saturate(1); }
+  50%  { filter: drop-shadow(0 12px 28px rgba(0,0,0,0.28)) brightness(1.08) saturate(1.06); }
+  100% { filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35)) brightness(0.95) saturate(1); }
+}
+
+/* Make animations independent by using separate transform layers in modern browsers */
+.zen-bg .lotus {
+  /* rise uses bottom; sway uses translateX/rotate in transform; shimmer uses filter */
+}
+
+/* Responsive: scale down lotus on small screens */
+@media (max-width: 900px) {
+  .zen-bg .lotus { width: 72px; height: 72px; }
+  .zen-bg .lotus:nth-child(10){ width: 100px; }
+}
+
+
+/* Content area should sit above the background */
+.main-content, main, .content {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+  .zen-bg .lotus { width: 90px; height: 90px; }
+  .zen-bg .lotus:nth-child(6){ width: 120px; }
+}
+
+/* Vertical float (slow up/down) */
+@keyframes floatY {
+  0%   { transform: translateY(0) scale(1); }
+  50%  { transform: translateY(-18px) scale(1.02); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* Gentle horizontal sway and slight rotation */
+@keyframes sway {
+  0%   { transform: translateX(0) rotate(-1deg); }
+  50%  { transform: translateX(8px) rotate(1.2deg); }
+  100% { transform: translateX(0) rotate(-1deg); }
+}
+
+/* Subtle shimmer (brightness pulse) */
+@keyframes shimmer {
+  0%   { filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35)) saturate(1) brightness(0.95); }
+  50%  { filter: drop-shadow(0 10px 26px rgba(0,0,0,0.28)) saturate(1.08) brightness(1.08); }
+  100% { filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35)) saturate(1) brightness(0.95); }
+}
+
+/* Combine float and sway more naturally by layering transforms with CSS variables */
+.zen-bg .lotus{
+  animation-name: floatY, sway, shimmer;
+  animation-timing-function: ease-in-out, ease-in-out, ease-in-out;
+  animation-iteration-count: infinite, infinite, infinite;
+}
+
+/* Make sure content sits above the background */
+.zen-bg .content{
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  padding: 40px;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+/* Responsive tweaks */
+@media (max-width: 800px){
+  .zen-bg .lotus{ width: 90px; height: 90px; }
+  .zen-bg .lotus:nth-child(6){ width: 120px; }
+}
+
 
 /* LOADING SCREEN */
 #loader {
@@ -818,4 +1013,102 @@ footer p {
         width: 190px !important;
         height: 190px !important;
     }
+}
+/* Floating Lotus Container */
+.floating-lotus {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1.2s ease;
+    z-index: 5; /* FIXED — brings lotus above nebula */
+}
+
+
+/* Lotus Image */
+.floating-lotus img {
+    width: 160px; /* slightly larger for visibility */
+    animation: lotusFloat 4s ease-in-out infinite,
+               lotusRotate 12s linear infinite,
+               lotusPulse 3s ease-in-out infinite,
+               lotusShimmer 6s ease-in-out infinite;
+    filter: drop-shadow(0 0 35px rgba(200, 120, 255, 1))
+            drop-shadow(0 0 55px rgba(255, 215, 0, 0.8));
+}
+
+/* Floating Up/Down */
+@keyframes lotusFloat {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Slow Rotation */
+@keyframes lotusRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Gentle Pulse */
+@keyframes lotusPulse {
+    0% { filter: drop-shadow(0 0 25px rgba(180, 90, 255, 0.6)); }
+    50% { filter: drop-shadow(0 0 45px rgba(200, 120, 255, 1)); }
+    100% { filter: drop-shadow(0 0 25px rgba(180, 90, 255, 0.6)); }
+}
+
+/* Cosmic Shimmer */
+@keyframes lotusShimmer {
+    0% { opacity: 0.9; }
+    50% { opacity: 1; }
+    100% { opacity: 0.9; }
+}
+
+/* Floating Sparkles */
+.lotus-sparkle {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(200,150,255,0.6) 60%, transparent 100%);
+    border-radius: 50%;
+    animation: sparkleFloat 5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes sparkleFloat {
+    0% { transform: translateY(0px) scale(1); opacity: 1; }
+    50% { transform: translateY(-40px) scale(1.4); opacity: 0.8; }
+    100% { transform: translateY(0px) scale(1); opacity: 1; }
+}
+
+/* Scroll Activated Animation */
+.floating-lotus.visible {
+    opacity: 1; /* fixed from 3 to 1 */
+    transform: translateY(0px);
+}
+
+/* .nebula-particles {
+    display: none;
+} */
+
+/* Background gradient animation */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Background lotus floating */
+@keyframes bgLotusFloat {
+    0% { background-position: center 140px; }
+    50% { background-position: center 110px; }
+    100% { background-position: center 140px; }
+}
+
+/* Background lotus shimmer */
+@keyframes bgLotusShimmer {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.25); }
+    100% { filter: brightness(1); }
 }
