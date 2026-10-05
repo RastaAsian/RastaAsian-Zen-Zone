@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zen Zone – Find Calm, Anywhere</title>
-
-    <!-- Your external CSS stays separate -->
     <link rel="stylesheet" href="css/style.css">
+    
 </head>
 
 <body>
@@ -16,16 +15,15 @@
         <img src="css/images/Zen Zone Logo (2).png" alt="Zen Zone Loading Logo">
     </div>
 
-    <!-- Rising lotus background container (JS will populate) -->
+    <!-- BACKGROUND ANIMATION -->
     <div class="zen-bg" aria-hidden="true"></div>
 
     <!-- HERO SECTION -->
     <header class="hero">
         <div class="hero-content">
-            <h1>Find Calm, Anywhere</h1>
-            <p>Guided meditations, breathing exercises, and a thriving spiritual community.</p>
+            <h1 class="hero-title">Find Calm, Anywhere</h1>
+            <p class="hero-subtitle">Meditations, breathing rituals, and a community built for inner peace.</p>
 
-            <!-- Cosmic Gold Lotus Logo -->
             <div class="logo-container">
                 <img src="css/images/Zen Zone Reimagined.png" alt="Zen Zone Logo" class="zenzone-logo">
             </div>
@@ -33,31 +31,50 @@
             <!-- Floating lotus -->
             <div class="floating-lotus visible" id="floatingLotus">
                 <img src="css/images/lotus.png" alt="Floating Lotus">
-
-                <div class="lotus-sparkle" style="top: -10px; left: 20px;"></div>
-                <div class="lotus-sparkle" style="top: 30px; left: -30px;"></div>
-                <div class="lotus-sparkle" style="top: 50px; right: -25px;"></div>
-                <div class="lotus-sparkle" style="top: -20px; right: 10px;"></div>
+                <div class="lotus-sparkle" style="top:-10px;left:20px;"></div>
+                <div class="lotus-sparkle" style="top:30px;left:-30px;"></div>
+                <div class="lotus-sparkle" style="top:50px;right:-25px;"></div>
+                <div class="lotus-sparkle" style="top:-20px;right:10px;"></div>
             </div>
 
-            <!-- Store Buttons -->
-            <div class="store-buttons">
-                <div class="store-item">
-                    <a href="https://apps.apple.com/us/app/zen-zone-meditation-asmr/id1637634893" target="_blank">
-                        <img src="css/images/download on app store 1.png" alt="Download on the App Store">
-                    </a>
-                    <img src="css/images/iphone.png" alt="Zen Zone iPhone Preview" class="device-preview">
-                </div>
+            <!-- CTA Buttons -->
+            <div class="cta-buttons">
+                <a href="https://apps.apple.com/us/app/zen-zone-meditation-asmr/id1637634893" target="_blank" class="cta-btn">
+                    <img src="css/images/download on app store 1.png" alt="Download on the App Store">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.atlas.meditation&hl=en-US" target="_blank" class="cta-btn">
+                    <img src="css/images/get it on play store 1.png" alt="Get it on Google Play">
+                </a>
+            </div>
 
-                <div class="store-item">
-                    <a href="https://play.google.com/store/apps/details?id=com.atlas.meditation&hl=en-US" target="_blank">
-                        <img src="css/images/get it on play store 1.png" alt="Get it on Google Play">
-                    </a>
-                    <img src="css/images/Samsung.png" alt="Zen Zone Samsung Preview" class="device-preview">
-                </div>
+            <!-- Device Previews -->
+            <div class="device-previews">
+                <img src="css/images/iphone.png" alt="Zen Zone iPhone Preview" class="device-preview">
+                <img src="css/images/Samsung.png" alt="Zen Zone Samsung Preview" class="device-preview">
             </div>
         </div>
     </header>
+
+    <!-- VALUE PROPOSITION SECTION -->
+    <section class="value-prop">
+        <h2>Why Zen Zone?</h2>
+        <p>Designed to help you breathe deeper, sleep better, and reconnect with your inner self.</p>
+
+        <div class="value-grid">
+            <div class="value-item">
+                <h3>Daily Calm Rituals</h3>
+                <p>Short, guided practices that fit into any schedule.</p>
+            </div>
+            <div class="value-item">
+                <h3>Breathing Exercises</h3>
+                <p>Scientifically backed techniques to reduce stress instantly.</p>
+            </div>
+            <div class="value-item">
+                <h3>Community Support</h3>
+                <p>Share your journey with thousands of mindful members.</p>
+            </div>
+        </div>
+    </section>
 
     <!-- FEATURES SECTION -->
     <section class="features">
@@ -86,10 +103,11 @@
         </div>
     </section>
 
-    <!-- COMMUNITY SECTION -->
-    <section class="community">
-        <h2>A Safe Space to Grow</h2>
-        <p>Join a thriving community of spiritual seekers. Share your experiences, explore new practices, and connect with like‑minded individuals.</p>
+    <!-- SOCIAL PROOF -->
+    <section class="social-proof">
+        <h2>Loved by Thousands</h2>
+        <p>“Zen Zone changed my mornings. I feel grounded before the day even begins.”</p>
+        <p class="review-author">— Maya R.</p>
     </section>
 
     <!-- TRUST SECTION -->
@@ -97,7 +115,6 @@
         <h2>Built for Peace of Mind</h2>
 
         <div class="trust-cards">
-
             <div class="trust-card">
                 <img src="css/images/security.png" alt="Certified Developers Icon">
                 <h4>Certified Developers</h4>
@@ -107,7 +124,7 @@
             <div class="trust-card">
                 <img src="css/images/privacy.png" alt="Privacy Icon">
                 <h4>Privacy First</h4>
-                <p>Your data stays yours is never shared with third parties.</p>
+                <p>Your data stays yours and is never shared with third parties.</p>
             </div>
 
             <div class="trust-card">
@@ -115,16 +132,15 @@
                 <h4>Secure & Protected</h4>
                 <p>Advanced authentication and encrypted accounts for complete peace of mind.</p>
             </div>
+        </div>
 
-            <div class="store-buttons">
-                <a href="https://apps.apple.com/us/app/zen-zone-meditation-asmr/id1637634893" target="_blank">
-                    <img src="css/images/download on app store 1.png" alt="Download on the App Store">
-                </a>
-                <a href="https://play.google.com/store/apps/details?id=com.atlas.meditation&hl=en-US" target="_blank">
-                    <img src="css/images/get it on play store 1.png" alt="Get it on Google Play">
-                </a>
-            </div>
-
+        <div class="trust-cta">
+            <a href="https://apps.apple.com/us/app/zen-zone-meditation-asmr/id1637634893" target="_blank">
+                <img src="css/images/download on app store 1.png" alt="Download on the App Store">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.atlas.meditation&hl=en-US" target="_blank">
+                <img src="css/images/get it on play store 1.png" alt="Get it on Google Play">
+            </a>
         </div>
     </section>
 
@@ -143,6 +159,39 @@
         </div>
     </section>
 
+    
+</div>
+
+    <div class="visualizer-container">
+    <!-- Hidden audio element -->
+    <audio id="audio-player" src="css/audio/Derek-Pope-Awake.mp3"></audio>
+
+    <button id="zz-play-btn">Play Zen Zone</button>
+
+    <div class="zz-song-info">
+        <span class="zz-song-title">Awake</span>
+        <span class="zz-song-artist">Derek Pope</span>
+    </div>
+
+    <!-- Visible visualizer canvas -->
+    <canvas id="music-visualizer"></canvas>
+</div>
+
+
+   <a href="https://open.spotify.com/track/030vuSH89rJhY76BmE2Ps6?si=b64499fae6c94853" target="_blank" class="zz-spotify-btn">
+    <img src="css/images/spotify-logo.png" alt="Spotify Icon" class="zz-spotify-icon">
+    <span>Play on Spotify</span>
+</a>
+
+
+    <canvas id="music-visualizer"></canvas>
+
+    <audio id="audio-player" src="css/audio/Derek-Pope-Awake.mp3"></audio>
+</div>
+
+</div>
+
+<script src="js/main.js"></script>
     <!-- FOOTER -->
     <footer>
         <img src="css/images/Zen Zone Reimagined.png" class="footer-logo" alt="Zen Zone Footer Logo">
@@ -152,66 +201,63 @@
     <!-- Breathing orb container -->
     <div id="breathing-orb-container"></div>
 
-    <!-- FULL JAVASCRIPT BELOW -->
+    <!-- JAVASCRIPT -->
     <script>
-    /* ---------------- LOADER ---------------- */
-    window.addEventListener("load", () => {
-        const loader = document.getElementById("loader");
-        loader.style.opacity = "0";
-        setTimeout(() => loader.style.display = "none", 600);
-    });
+        window.addEventListener("load", () => {
+            const loader = document.getElementById("loader");
+            loader.style.opacity = "0";
+            setTimeout(() => loader.style.display = "none", 600);
+        });
 
-    /* ---------------- BREATHING ORB ---------------- */
-    window.addEventListener("load", () => {
-        const orbContainer = document.getElementById("breathing-orb-container");
-        const orb = document.createElement("div");
-        orb.className = "breathing-orb";
+        window.addEventListener("load", () => {
+            const orbContainer = document.getElementById("breathing-orb-container");
+            const orb = document.createElement("div");
+            orb.className = "breathing-orb";
 
-        const logo = document.createElement("img");
-        logo.src = "css/images/Zen Zone Reimagined.png";
-        logo.alt = "Zen Zone Breathing Orb Logo";
+            const logo = document.createElement("img");
+            logo.src = "css/images/Zen Zone Reimagined.png";
+            logo.alt = "Zen Zone Breathing Orb Logo";
 
-        orb.appendChild(logo);
-        orbContainer.appendChild(orb);
-    });
+            orb.appendChild(logo);
+            orbContainer.appendChild(orb);
+        });
 
-    /* ---------------- HERO FLOATING LOTUS ---------------- */
-    window.addEventListener("load", () => {
-        document.getElementById("floatingLotus").classList.add("visible");
-    });
+        window.addEventListener("load", () => {
+            document.getElementById("floatingLotus").classList.add("visible");
+        });
 
-    /* ---------------- RISING LOTUS BACKGROUND ---------------- */
-    function generateRisingLotus() {
-        const container = document.querySelector(".zen-bg");
-        container.innerHTML = "";
+        function generateRisingLotus() {
+            const container = document.querySelector(".zen-bg");
+            container.innerHTML = "";
 
-        const COUNT = 24;
+            const COUNT = 24;
 
-        for (let i = 0; i < COUNT; i++) {
-            const lotus = document.createElement("div");
-            lotus.className = "lotus";
+            for (let i = 0; i < COUNT; i++) {
+                const lotus = document.createElement("div");
+                lotus.className = "lotus";
 
-            lotus.style.left = Math.random() * 90 + "%";
-            lotus.style.width = (Math.random() * 80 + 60) + "px";
-            lotus.style.opacity = (Math.random() * 0.3 + 0.7).toFixed(2);
+                lotus.style.left = Math.random() * 90 + "%";
+                lotus.style.width = (Math.random() * 80 + 60) + "px";
+                lotus.style.opacity = (Math.random() * 0.3 + 0.7).toFixed(2);
 
-            const rise = (Math.random() * 18 + 14).toFixed(2) + "s";
-            const sway = (Math.random() * 4 + 5).toFixed(2) + "s";
-            const shimmer = (Math.random() * 4 + 4).toFixed(2) + "s";
+                const rise = (Math.random() * 18 + 14).toFixed(2) + "s";
+                const sway = (Math.random() * 4 + 5).toFixed(2) + "s";
+                const shimmer = (Math.random() * 4 + 4).toFixed(2) + "s";
 
-            const riseDelay = "-" + (Math.random() * parseFloat(rise)).toFixed(2) + "s";
-            const swayDelay = "-" + (Math.random() * 2).toFixed(2) + "s";
-            const shimmerDelay = "-" + (Math.random() * 3).toFixed(2) + "s";
+                const riseDelay = "-" + (Math.random() * parseFloat(rise)).toFixed(2) + "s";
+                const swayDelay = "-" + (Math.random() * 2).toFixed(2) + "s";
+                const shimmerDelay = "-" + (Math.random() * 3).toFixed(2) + "s";
 
-            lotus.style.animationDuration = `${rise}, ${sway}, ${shimmer}`;
-            lotus.style.animationDelay = `${riseDelay}, ${swayDelay}, ${shimmerDelay}`;
+                lotus.style.animationDuration = `${rise}, ${sway}, ${shimmer}`;
+                lotus.style.animationDelay = `${riseDelay}, ${swayDelay}, ${shimmerDelay}`;
 
-            container.appendChild(lotus);
+                container.appendChild(lotus);
+            }
         }
-    }
 
-    window.addEventListener("load", generateRisingLotus);
+        window.addEventListener("load", generateRisingLotus);
+
     </script>
-
+<script src="zz.js"></script>
 </body>
 </html>

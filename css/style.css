@@ -1,1114 +1,675 @@
+:root {
+    /* Core Colors */
+    --bg-dark: #050509;
+    --bg-cosmic: radial-gradient(circle at 50% 20%, #1a1a2e, #050509 70%);
+    --text-light: #f5f5f5;
+    --text-soft: #dcdcdc;
+
+    /* Gold Accents */
+    --gold: #d9a86c;
+    --gold-soft: rgba(217,168,108,0.45);
+    --gold-border: rgba(217,168,108,0.35);
+
+    /* Neon Gradient */
+    --neon: linear-gradient(135deg, #ff4ecd, #7b5bff, #00d4ff);
+    --neon-soft: rgba(255,78,205,0.45);
+
+    /* Radii */
+    --radius-soft: 16px;
+    --radius-round: 40px;
+
+    /* Shadows */
+    --shadow-soft: 0 0 40px rgba(0, 0, 0, 0.4);
+    --shadow-deep: 0 0 80px rgba(0, 0, 0, 0.7);
+    --shadow-gold: 0 0 35px rgba(217,168,108,0.6);
+    --shadow-neon: 0 0 40px rgba(255,78,205,0.7);
+
+    /* Spacing */
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 32px;
+    --space-lg: 64px;
+    --space-xl: 120px;
+
+    /* Animation Speeds */
+    --speed-slow: 8s;
+    --speed-medium: 4s;
+    --speed-fast: 1.5s;
+
+    /* Max Width */
+    --max-width: 1100px;
+}
+
 /* GLOBAL RESET */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-
-/* Palette and lotus image */
-:root{
-  --zen-dark:  #07102a;
-  --zen-mid:   #2b1f6b;
-  --zen-light: #5b6bd6;
-  --accent:    #8bd3ff;
-  --lotus-url: url("css/images/lotus.png"); /* update to your lotus PNG or SVG */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Page gradient (full viewport) */
-html, body {
-  height: 100%;
-  margin: 0;
-  background: linear-gradient(135deg, var(--zen-dark) 0%, var(--zen-mid) 50%, var(--zen-light) 100%);
-  background-size: 200% 200%;
-  animation: zenGradient 18s ease-in-out infinite;
-  color: #EDEDED;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* BODY */
+body {
+    background: var(--bg-cosmic);
+    color: var(--text-light);
+    font-family: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
 }
 
-/* Gradient animation */
-@keyframes zenGradient {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* BACKGROUND CONTAINER */
+.zen-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
 }
 
-/* Background container that holds lotus elements (behind content) */
-.zen-bg{
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none; /* allow clicks through */
-  overflow: hidden;
-}
-
-/* Base lotus style: each .lotus is an absolutely positioned rising image */
-.zen-bg .lotus{
-  position: absolute;
-  bottom: -28vh; /* start well below viewport */
-  width: 120px;
-  height: 120px;
-  background-image: var(--lotus-url);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  opacity: 0.95;
-  transform-origin: center;
-  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35));
-  will-change: transform, opacity, left, bottom;
-  /* Three independent animations: rise (vertical), sway (translate/rotate), shimmer (filter/opacity) */
-  animation:
-    rise linear infinite,
-    sway ease-in-out infinite,
-    shimmer ease-in-out infinite;
-}
-
-/* Staggered positions, sizes, durations and delays for natural flow */
-.zen-bg .lotus:nth-child(1) { left: 6%;  width: 100px; animation-duration: 18s, 6s, 5s; animation-delay: 0s, 0s, 0s;  opacity:0.98; }
-.zen-bg .lotus:nth-child(2) { left: 18%; width: 140px; animation-duration: 22s, 7s, 6s; animation-delay: 2s, 0.5s, 0.2s; opacity:0.92; }
-.zen-bg .lotus:nth-child(3) { left: 30%; width: 90px;  animation-duration: 16s, 5.5s, 4.5s; animation-delay: 4s, 1s, 0.4s; opacity:0.9;  }
-.zen-bg .lotus:nth-child(4) { left: 42%; width: 130px; animation-duration: 20s, 6.5s, 5.2s; animation-delay: 1s, 0.8s, 0.6s; opacity:0.9;  }
-.zen-bg .lotus:nth-child(5) { left: 54%; width: 110px; animation-duration: 24s, 7.5s, 6.5s; animation-delay: 3s, 1.2s, 0.8s; opacity:0.86; }
-.zen-bg .lotus:nth-child(6) { left: 66%; width: 150px; animation-duration: 19s, 6s, 5s; animation-delay: 5s, 1.6s, 1s; opacity:0.84; }
-.zen-bg .lotus:nth-child(7) { left: 78%; width: 95px;  animation-duration: 21s, 6.8s, 5.6s; animation-delay: 2.5s, 0.9s, 0.5s; opacity:0.88; }
-.zen-bg .lotus:nth-child(8) { left: 86%; width: 120px; animation-duration: 23s, 7.2s, 6.1s; animation-delay: 6s, 1.9s, 1.1s; opacity:0.8;  }
-.zen-bg .lotus:nth-child(9) { left: 12%; width: 80px;  animation-duration: 17s, 5.2s, 4.2s; animation-delay: 7s, 2.2s, 1.4s; opacity:0.9;  }
-.zen-bg .lotus:nth-child(10){ left: 36%; width:160px; animation-duration: 26s, 8s, 6.8s; animation-delay: 8s, 2.6s, 1.6s; opacity:0.78; }
-.zen-bg .lotus:nth-child(11){ left: 60%; width:100px; animation-duration: 18s, 6s, 5s; animation-delay: 9s, 2.9s, 1.8s; opacity:0.85; }
-.zen-bg .lotus:nth-child(12){ left: 92%; width:140px; animation-duration: 28s, 8.5s, 7s; animation-delay: 10s, 3.2s, 2s; opacity:0.8; }
-
-/* Rise animation: start below viewport, move up past top, fade slightly, then reset */
-@keyframes rise {
-  0%   { bottom: -28vh; transform: translateX(0) scale(0.92); opacity: 0.0; }
-  6%   { opacity: 0.85; }
-  50%  { bottom: 60vh; transform: translateX(0) scale(1.02); opacity: 0.98; }
-  90%  { bottom: 110vh; opacity: 0.6; }
-  100% { bottom: 130vh; opacity: 0.0; }
-}
-
-/* Sway animation: small horizontal drift and rotation looped */
-@keyframes sway {
-  0%   { transform: translateX(0) rotate(-2deg); }
-  25%  { transform: translateX(8px) rotate(1.2deg); }
-  50%  { transform: translateX(0) rotate(-1deg); }
-  75%  { transform: translateX(-6px) rotate(1deg); }
-  100% { transform: translateX(0) rotate(-2deg); }
-}
-
-/* Shimmer: subtle brightness/pulse via filter and opacity */
-@keyframes shimmer {
-  0%   { filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35)) brightness(0.95) saturate(1); opacity: 0.92; }
-  50%  { filter: drop-shadow(0 12px 28px rgba(0,0,0,0.28)) brightness(1.08) saturate(1.06); opacity: 1; }
-  100% { filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35)) brightness(0.95) saturate(1); opacity: 0.92; }
-}
-
-/* Make sure transforms compose smoothly (modern browsers) */
-.zen-bg .lotus {
-  /* rise uses bottom; sway uses transform; shimmer uses filter/opacity */
-}
-
-/* Content area sits above background */
-.main-content, main, .content {
-  position: relative;
-  z-index: 1;
-  background: transparent;
-}
-
-/* Optional floating-lotus container (if you use inline <img> lotus elsewhere) */
-.floating-lotus { display:flex; justify-content:center; margin-top:40px; position:relative; opacity:1; transform:translateY(0); z-index:5; pointer-events:none; }
-
-/* Responsive: scale down lotus on small screens */
-@media (max-width: 900px) {
-  .zen-bg .lotus { width: 72px; height: 72px; }
-  .zen-bg .lotus:nth-child(10){ width: 100px; }
-}
-
-/* Performance tip: reduce number of lotus or simplify animations on very small screens */
-@media (max-width: 480px) {
-  .zen-bg .lotus { width: 56px; height: 56px; animation-duration: calc(18s * 1.2); }
-}
-
-/* Optional sparkle elements (if you add .lotus-sparkle nodes) */
-.lotus-sparkle {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(200,150,255,0.6) 60%, transparent 100%);
-  border-radius: 50%;
-  animation: sparkleFloat 5s ease-in-out infinite;
-  pointer-events: none;
-}
-@keyframes sparkleFloat {
-  0% { transform: translateY(0px) scale(1); opacity: 1; }
-  50% { transform: translateY(-40px) scale(1.4); opacity: 0.8; }
-  100% { transform: translateY(0px) scale(1); opacity: 1; }
-}
-
-/* Legacy/unused keyframes removed to avoid duplication */
-
-/* Rise animation: start below viewport, move up past top, fade slightly, then reset */
-@keyframes rise {
-  0%   { bottom: -20vh; transform: translateX(0) scale(0.95); opacity: 0.0; }
-  6%   { opacity: 0.9; }
-  50%  { bottom: 60vh; transform: translateX(0) scale(1.02); opacity: 0.98; }
-  90%  { bottom: 110vh; opacity: 0.6; }
-  100% { bottom: 130vh; opacity: 0.0; }
-}
-
-/* Sway animation: small horizontal drift and rotation looped */
-@keyframes sway {
-  0%   { transform: translateX(0) rotate(-2deg); }
-  25%  { transform: translateX(8px) rotate(1.2deg); }
-  50%  { transform: translateX(0) rotate(-1deg); }
-  75%  { transform: translateX(-6px) rotate(1deg); }
-  100% { transform: translateX(0) rotate(-2deg); }
-}
-
-/* Shimmer: subtle brightness/pulse */
-@keyframes shimmer {
-  0%   { filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35)) brightness(0.95) saturate(1); }
-  50%  { filter: drop-shadow(0 12px 28px rgba(0,0,0,0.28)) brightness(1.08) saturate(1.06); }
-  100% { filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35)) brightness(0.95) saturate(1); }
-}
-
-/* Make animations independent by using separate transform layers in modern browsers */
-.zen-bg .lotus {
-  /* rise uses bottom; sway uses translateX/rotate in transform; shimmer uses filter */
-}
-
-/* Responsive: scale down lotus on small screens */
-@media (max-width: 900px) {
-  .zen-bg .lotus { width: 72px; height: 72px; }
-  .zen-bg .lotus:nth-child(10){ width: 100px; }
-}
-
-
-/* Content area should sit above the background */
-.main-content, main, .content {
-  position: relative;
-  z-index: 1;
-  background: transparent;
-}
-
-/* Responsive tweaks */
-@media (max-width: 900px) {
-  .zen-bg .lotus { width: 90px; height: 90px; }
-  .zen-bg .lotus:nth-child(6){ width: 120px; }
-}
-
-/* Vertical float (slow up/down) */
-@keyframes floatY {
-  0%   { transform: translateY(0) scale(1); }
-  50%  { transform: translateY(-18px) scale(1.02); }
-  100% { transform: translateY(0) scale(1); }
-}
-
-/* Gentle horizontal sway and slight rotation */
-@keyframes sway {
-  0%   { transform: translateX(0) rotate(-1deg); }
-  50%  { transform: translateX(8px) rotate(1.2deg); }
-  100% { transform: translateX(0) rotate(-1deg); }
-}
-
-/* Subtle shimmer (brightness pulse) */
-@keyframes shimmer {
-  0%   { filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35)) saturate(1) brightness(0.95); }
-  50%  { filter: drop-shadow(0 10px 26px rgba(0,0,0,0.28)) saturate(1.08) brightness(1.08); }
-  100% { filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35)) saturate(1) brightness(0.95); }
-}
-
-/* Combine float and sway more naturally by layering transforms with CSS variables */
-.zen-bg .lotus{
-  animation-name: floatY, sway, shimmer;
-  animation-timing-function: ease-in-out, ease-in-out, ease-in-out;
-  animation-iteration-count: infinite, infinite, infinite;
-}
-
-/* Make sure content sits above the background */
-.zen-bg .content{
-  position: relative;
-  z-index: 1;
-  min-height: 100vh;
-  padding: 40px;
-  box-sizing: border-box;
-  background: transparent;
-}
-
-/* Responsive tweaks */
-@media (max-width: 800px){
-  .zen-bg .lotus{ width: 90px; height: 90px; }
-  .zen-bg .lotus:nth-child(6){ width: 120px; }
-}
-
-
-/* LOADING SCREEN */
+/* LOADER */
 #loader {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: black;
+    inset: 0;
+    background: radial-gradient(circle at 50% 20%, #1a1a2e, #050509 70%);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     z-index: 9999;
     transition: opacity 0.6s ease;
 }
 
 #loader img {
-    width: 260px;        /* bigger */
-    animation: loaderPulse 2.5s ease-in-out infinite;
+    width: 140px;
+    filter: drop-shadow(var(--shadow-gold));
 }
 
-@keyframes loaderPulse {
-    0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(217,179,255,0.5)); }
-    50% { transform: scale(1.15); filter: drop-shadow(0 0 35px rgba(255,215,0,1)); }
-    100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(217,179,255,0.5)); }
-}
-
-/* HERO SECTION */
+/* HERO */
 .hero {
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    text-align: center;
-    padding: 60px 10%;
-    position: relative;
-    overflow: hidden;
-    z-index: 2;
-}
-
-/* FLOATING COSMIC AURA */
-.hero-aura {
-    position: absolute;
-    top: -150px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(217,179,255,0.6), rgba(0,0,0,0));
-    filter: blur(80px);
-    animation: auraFloat 10s ease-in-out infinite;
-    z-index: 0;
-}
-
-@keyframes auraFloat {
-    0% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(40px); }
-    100% { transform: translateX(-50%) translateY(0); }
-}
-
-/* HERO CONTENT */
-.hero-content {
-    max-width: 500px;
-    position: relative;
-    z-index: 2;
-    text-align: center;
-}
-
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    color: #D9B3FF;
-    text-shadow: 0 0 12px rgba(217,179,255,0.5);
-}
-
-.hero p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-}
-
-/* COSMIC LOTUS LOGO */
-.logo-container {
-    display: flex;
     justify-content: center;
-    margin: 25px 0;
+    padding: var(--space-xl) var(--space-md) var(--space-lg);
+}
+
+.hero-content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* HERO TEXT */
+.hero-title {
+    font-size: 3.4rem;
+    font-weight: 700;
+    background: var(--neon);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.04em;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-soft);
+    margin-top: var(--space-sm);
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* LOGO */
+.logo-container {
+    margin-top: var(--space-md);
 }
 
 .zenzone-logo {
     width: 180px;
-    height: auto;
-    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
-    animation: glowPulse 3s infinite ease-in-out;
+    filter: drop-shadow(var(--shadow-gold));
 }
 
-@keyframes glowPulse {
-    0% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4)); }
-    50% { filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.8)); }
-    100% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4)); }
+/* FLOATING LOTUS */
+.floating-lotus {
+    margin-top: var(--space-md);
+    display: inline-block;
+    position: relative;
+    animation: floatLotus var(--speed-slow) ease-in-out infinite;
 }
 
-/* STORE BUTTONS — CLEAN + CENTERED */
+.floating-lotus img {
+    width: 120px;
+    filter: drop-shadow(var(--shadow-neon));
+}
+
+.lotus-sparkle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--neon);
+    box-shadow: var(--shadow-neon);
+    opacity: 0.8;
+    animation: sparkle var(--speed-fast) ease-in-out infinite;
+}
+
+/* CTA BUTTONS */
+.cta-buttons,
 .store-buttons {
     display: flex;
+    gap: var(--space-sm);
     justify-content: center;
-    gap: 40px;
-    margin-top: 25px;
+    align-items: center;
+    margin-top: var(--space-md);
     flex-wrap: wrap;
 }
 
-.store-item {
+.cta-btn img,
+.store-buttons img {
+    width: 180px;
+    filter: drop-shadow(var(--shadow-gold));
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.cta-btn:hover img,
+.store-buttons a:hover img {
+    transform: translateY(-3px) scale(1.03);
+    filter: drop-shadow(var(--shadow-neon));
+}
+
+/* DEVICE PREVIEWS */
+.device-previews {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+    flex-wrap: wrap;
 }
 
-.store-item a img {
-    width: 200px;        /* bigger button */
-    margin-bottom: 15px;
-    filter: drop-shadow(0 0 12px rgba(217,179,255,0.8));
-    transition: transform 0.25s ease, filter 0.25s ease;
-}
-
-
-.store-item a img:hover {
-    transform: scale(1.08);
-    filter: drop-shadow(0 0 20px rgba(255,215,0,1));
-}
-
-/* DEVICE PREVIEWS — iPhone + Samsung */
 .device-preview {
-    width: 260px;
-    height: 520px;
-    object-fit: contain;
-    border-radius: 20px;
-    filter: drop-shadow(0 0 25px rgba(217,179,255,0.6));
-    transition: transform 0.25s ease;
+    width: 220px;
+    border-radius: var(--radius-soft);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: radial-gradient(circle at 30% 0%, rgba(255,255,255,0.08), rgba(0,0,0,0.9));
 }
 
-.device-preview:hover {
-    transform: scale(1.05);
-}
-
-/* HERO IMAGE (OLD MOCKUP) */
-.hero-image img {
-    width: 350px;
-    border-radius: 20px;
-    box-shadow: 0 0 25px rgba(217,179,255,0.3);
-    position: relative;
-    z-index: 2;
-}
-
-/* GLASS PANELS */
-header, section, footer {
-    background: rgba(0, 0, 0, 0.45);
-    padding: 60px 10%;
-    margin: 40px auto;
-    border-radius: 20px;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 0 25px rgba(217, 179, 255, 0.25);
-}
-
-header, section, footer {
-    background: rgba(0, 0, 0, 0.45);
-    padding: 60px 10%;
-    margin: 40px auto;
-    border-radius: 20px;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 0 25px rgba(217, 179, 255, 0.25);
-
-    /* ⭐ NEW — centers all content inside */
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.store-buttons {
-    display: flex;
-    justify-content: center;   /* centers the row */
-    align-items: center;        /* centers vertically */
-    gap: 60px;                  /* spacing between iPhone + Samsung */
-    margin-top: 30px;
-    flex-wrap: nowrap;          /* keeps them side-by-side */
-}
-.store-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;   /* centers each phone + button */
+/* VALUE PROP */
+.value-prop {
+    padding: var(--space-lg) var(--space-md);
     text-align: center;
 }
-/* FEATURES SECTION — COSMIC UPGRADE */
+
+.value-prop h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.value-prop p {
+    margin-top: var(--space-sm);
+    color: var(--text-soft);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* VALUE GRID */
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-md);
+    max-width: var(--max-width);
+    margin: var(--space-lg) auto 0;
+}
+
+.value-item {
+    padding: var(--space-md);
+    border-radius: var(--radius-soft);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--gold-border);
+    box-shadow: var(--shadow-soft);
+}
+
+.value-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-xs);
+    color: var(--text-light);
+}
+
+.value-item p {
+    color: var(--text-soft);
+    font-size: 0.95rem;
+}
+
+/* FEATURES */
 .features {
+    padding: var(--space-lg) var(--space-md);
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+}
+
+.features h2 {
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 .feature-list {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 40px;
-    max-width: 1000px;
+    max-width: var(--max-width);
+    margin: var(--space-lg) auto 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-md);
 }
 
 .feature {
-    background: rgba(0, 0, 0, 0.35);
-    padding: 35px;
-    border-radius: 18px;
-    width: 42%;
-    min-width: 280px;
+    padding: var(--space-md);
+    border-radius: var(--radius-soft);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
 
-    /* Cosmic glow */
-    box-shadow:
-        0 0 20px rgba(217, 179, 255, 0.25),
-        0 0 35px rgba(255, 215, 0, 0.15);
+.feature h3 {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-xs);
+}
 
-    border: 1px solid rgba(255, 215, 0, 0.25);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.feature p {
+    color: var(--text-soft);
+    font-size: 0.95rem;
 }
 
 .feature:hover {
     transform: translateY(-6px);
-    box-shadow:
-        0 0 25px rgba(217, 179, 255, 0.45),
-        0 0 45px rgba(255, 215, 0, 0.35);
+    box-shadow: var(--shadow-gold);
+    border-color: var(--gold-border);
 }
 
-.feature h3 {
-    margin-bottom: 15px;
-    color: #D9B3FF;
-    font-size: 1.4rem;
-    text-shadow: 0 0 10px rgba(217,179,255,0.6);
-}
-
-.feature p {
-    color: #EDEDED;
-    font-size: 1rem;
-    opacity: 0.9;
-}
-.features h2 {
-    font-size: 3rem;
-    margin-bottom: 45px;
-
-    /* Cosmic colors */
-    color: #D9B3FF;
-
-    /* Glow */
-    text-shadow:
-        0 0 12px rgba(217,179,255,0.8),
-        0 0 25px rgba(255,215,0,0.6),
-        0 0 45px rgba(217,179,255,0.4);
-
-    /* Subtle float animation */
-    animation: titleFloat 6s ease-in-out infinite;
-}
-
-@keyframes titleFloat {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-    100% { transform: translateY(0); }
-}
-/* COMMUNITY SECTION — COSMIC GLOW */
-.community {
+/* SOCIAL PROOF */
+.social-proof {
+    padding: var(--space-lg) var(--space-md);
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    /* spacing */
-    padding: 50px 10%;
 }
 
-/* Title Glow */
-.community h2 {
-    font-size: 3rem;
-    margin-bottom: 25px;
-    color: #D9B3FF;
-
-    text-shadow:
-        0 0 12px rgba(217,179,255,0.8),
-        0 0 25px rgba(255,215,0,0.6),
-        0 0 45px rgba(217,179,255,0.4);
-
-    animation: titleFloat 6s ease-in-out infinite;
+.social-proof h2 {
+    font-size: 2rem;
+    font-weight: 600;
 }
 
-/* Underline cosmic bar */
-.community h2::after {
-    content: "";
-    display: block;
-    width: 140px;
-    height: 4px;
-    margin: 15px auto 0;
-
-    background: linear-gradient(90deg,
-        rgba(255,215,0,0.8),
-        rgba(217,179,255,0.9),
-        rgba(255,215,0,0.8)
-    );
-
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(217,179,255,0.7);
+.social-proof p {
+    margin-top: var(--space-sm);
+    color: var(--text-soft);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* Paragraph styling */
-.community p {
-    max-width: 700px;
-    font-size: 1.2rem;
-    color: #EDEDED;
-    opacity: 0.95;
-    line-height: 1.6;
-
-    /* soft glow */
-    text-shadow: 0 0 8px rgba(217,179,255,0.4);
+.social-proof .review-author {
+    margin-top: var(--space-xs);
+    font-size: 0.95rem;
+    color: var(--gold);
 }
 
-/* Float animation reused */
-@keyframes titleFloat {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-    100% { transform: translateY(0); }
-}
-/* TRUST SECTION — COSMIC UPGRADE */
+/* TRUST SECTION */
 .trust {
+    padding: var(--space-lg) var(--space-md) var(--space-xl);
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 60px 10%;
 }
 
-/* Title Glow */
 .trust h2 {
-    font-size: 3rem;
-    margin-bottom: 40px;
-    color: #D9B3FF;
-
-    text-shadow:
-        0 0 12px rgba(217,179,255,0.8),
-        0 0 25px rgba(255,215,0,0.6),
-        0 0 45px rgba(217,179,255,0.4);
-
-    animation: titleFloat 6s ease-in-out infinite;
+    font-size: 2rem;
+    font-weight: 600;
 }
 
-/* Cosmic underline */
-.trust h2::after {
-    content: "";
-    display: block;
-    width: 160px;
-    height: 4px;
-    margin: 15px auto 0;
-
-    background: linear-gradient(90deg,
-        rgba(255,215,0,0.8),
-        rgba(217,179,255,0.9),
-        rgba(255,215,0,0.8)
-    );
-
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(217,179,255,0.7);
-}
-
-/* Trust cards layout */
 .trust-cards {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 40px;
-    max-width: 1100px;
+    max-width: var(--max-width);
+    margin: var(--space-lg) auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-md);
 }
 
-/* Individual trust card */
 .trust-card {
-    background: rgba(0, 0, 0, 0.35);
-    padding: 35px;
-    border-radius: 18px;
-    width: 28%;
-    min-width: 260px;
-
-    box-shadow:
-        0 0 20px rgba(217, 179, 255, 0.25),
-        0 0 35px rgba(255, 215, 0, 0.15);
-
-    border: 1px solid rgba(255, 215, 0, 0.25);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: var(--space-md);
+    border-radius: var(--radius-soft);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: var(--shadow-soft);
 }
 
-.trust-card:hover {
-    transform: translateY(-6px);
-    box-shadow:
-        0 0 25px rgba(217,179,255,0.45),
-        0 0 45px rgba(255,215,0,0.35);
+.trust-card img {
+    width: 52px;
+    margin-bottom: var(--space-sm);
+    filter: drop-shadow(var(--shadow-gold));
 }
 
-/* Trust card titles */
 .trust-card h4 {
-    margin-top: 15px;
-    margin-bottom: 10px;
-    color: #D9B3FF;
-    font-size: 1.3rem;
-    text-shadow: 0 0 10px rgba(217,179,255,0.6);
+    font-size: 1.1rem;
+    margin-bottom: var(--space-xs);
 }
 
-/* Trust card text */
 .trust-card p {
-    color: #EDEDED;
-    opacity: 0.95;
-    line-height: 1.5;
+    color: var(--text-soft);
+    font-size: 0.95rem;
 }
 
-/* Store buttons inside trust section */
-.trust .store-buttons {
-    margin-top: 50px;
+/* TRUST CTA */
+.trust-cta {
+    margin-top: var(--space-lg);
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
 }
 
-/* Bigger glowing store buttons */
-.trust .store-buttons img {
-    width: 200px; /* bigger */
-    filter: drop-shadow(0 0 15px rgba(217,179,255,0.8));
-    transition: transform 0.25s ease, filter 0.25s ease;
-}
-
-.trust .store-buttons img:hover {
-    transform: scale(1.12);
-    filter: drop-shadow(0 0 25px rgba(255,215,0,1));
-}
-
-/* Float animation reused */
-@keyframes titleFloat {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-    100% { transform: translateY(0); }
-}
-.trust-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;   /* centers image + title + text */
-    text-align: center;    /* centers text */
-}
-/* CTA SECTION — COSMIC REVAMP */
+/* CTA SECTION */
 .cta {
+    padding: var(--space-lg) var(--space-md) var(--space-xl);
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 70px 10%;
-    margin-top: 40px;
-
-    /* soft cosmic aura */
-    position: relative;
 }
 
-.cta::before {
-    content: "";
-    position: absolute;
-    top: -80px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 600px;
-
-    background: radial-gradient(circle,
-        rgba(217,179,255,0.35),
-        rgba(0,0,0,0)
-    );
-
-    filter: blur(80px);
-    z-index: -1;
-}
-
-/* CTA Title Glow */
 .cta h2 {
-    font-size: 3rem;
-    margin-bottom: 25px;
-    color: #D9B3FF;
-
-    text-shadow:
-        0 0 12px rgba(217,179,255,0.8),
-        0 0 25px rgba(255,215,0,0.6),
-        0 0 45px rgba(217,179,255,0.4);
-
-    animation: titleFloat 6s ease-in-out infinite;
+    font-size: 2rem;
+    font-weight: 600;
 }
 
-/* Cosmic underline */
-.cta h2::after {
-    content: "";
-    display: block;
-    width: 160px;
-    height: 4px;
-    margin: 15px auto 0;
-
-    background: linear-gradient(90deg,
-        rgba(255,215,0,0.8),
-        rgba(217,179,255,0.9),
-        rgba(255,215,0,0.8)
-    );
-
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(217,179,255,0.7);
-}
-
-/* CTA paragraph */
 .cta p {
-    max-width: 700px;
-    font-size: 1.25rem;
-    color: #EDEDED;
-    opacity: 0.95;
-    margin-bottom: 40px;
-    line-height: 1.6;
-
-    text-shadow: 0 0 8px rgba(217,179,255,0.4);
+    margin-top: var(--space-sm);
+    color: var(--text-soft);
 }
 
-/* CTA store buttons */
-.cta .store-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-}
-
-/* Bigger glowing buttons */
-.cta .store-buttons img {
-    width: 210px; /* bigger */
-    filter: drop-shadow(0 0 15px rgba(217,179,255,0.8));
-    transition: transform 0.25s ease, filter 0.25s ease;
-}
-
-.cta .store-buttons img:hover {
-    transform: scale(1.12);
-    filter: drop-shadow(0 0 25px rgba(255,215,0,1));
-}
-
-/* Float animation */
-@keyframes titleFloat {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-    100% { transform: translateY(0); }
-}
-/* FOOTER — COSMIC REVAMP */
+/* FOOTER */
 footer {
+    padding: var(--space-md);
     text-align: center;
-    padding: 40px 10%;
-    background: rgba(0, 0, 0, 0.55);
-    border-radius: 20px;
-    margin-top: 60px;
-
-    box-shadow:
-        0 0 25px rgba(217,179,255,0.25),
-        0 0 45px rgba(255,215,0,0.15);
-
-    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    background: rgba(0,0,0,0.6);
 }
 
-/* Cosmic aura behind footer */
-footer::before {
-    content: "";
-    position: absolute;
-    top: -120px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 700px;
-    height: 700px;
-
-    background: radial-gradient(circle,
-        rgba(217,179,255,0.35),
-        rgba(0,0,0,0)
-    );
-
-    filter: blur(90px);
-    z-index: -1;
-}
-
-/* Footer logo glow */
 .footer-logo {
-    width: 160px;
-    margin-bottom: 20px;
-
-    filter: drop-shadow(0 0 20px rgba(217,179,255,0.8))
-            drop-shadow(0 0 35px rgba(255,215,0,0.6));
-
-    animation: footerFloat 6s ease-in-out infinite;
+    width: 120px;
+    filter: drop-shadow(var(--shadow-gold));
+    margin-bottom: var(--space-xs);
 }
 
-@keyframes footerFloat {
+footer p {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+}
+
+/* BREATHING ORB */
+#breathing-orb-container {
+    position: fixed;
+    bottom: var(--space-md);
+    right: var(--space-md);
+    z-index: 50;
+}
+
+.breathing-orb {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--neon);
+    box-shadow: var(--shadow-neon);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: breathe var(--speed-slow) ease-in-out infinite;
+}
+
+.breathing-orb img {
+    width: 46px;
+}
+
+/* RISING LOTUS BACKGROUND */
+.lotus {
+    position: absolute;
+    bottom: -120px;
+    background-image: url("css/images/lotus.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: riseLotus var(--speed-slow) linear infinite,
+               swayLotus var(--speed-medium) ease-in-out infinite,
+               shimmerLotus var(--speed-fast) ease-in-out infinite;
+}
+
+/* ANIMATIONS */
+@keyframes floatLotus {
     0% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
+    50% { transform: translateY(-18px); }
     100% { transform: translateY(0); }
 }
 
-/* Footer text */
-footer p {
-    color: #D9B3FF;
-    font-size: 1rem;
-    opacity: 0.9;
-
-    text-shadow:
-        0 0 10px rgba(217,179,255,0.6),
-        0 0 20px rgba(255,215,0,0.4);
-}
-/* Breathing Orb Container */
-#breathing-orb-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 60px 0 80px;
-    position: relative;
+@keyframes sparkle {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
 }
 
-/* Main Breathing Orb */
-.breathing-orb {
-    width: 240px;
-    height: 240px;
-    border-radius: 50%;
-    position: relative;
-
-    background: radial-gradient(circle,
-        rgba(255,215,0,0.9),
-        rgba(217,179,255,0.7),
-        rgba(0,0,0,0.9)
-    );
-
-    box-shadow:
-        0 0 35px rgba(255,215,0,0.8),
-        0 0 55px rgba(217,179,255,0.6);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    animation: orbBreath 6s ease-in-out infinite;
+@keyframes breathe {
+    0% { transform: scale(1); box-shadow: var(--shadow-neon); }
+    50% { transform: scale(1.12); box-shadow: 0 0 60px rgba(255,78,205,0.9); }
+    100% { transform: scale(1); box-shadow: var(--shadow-neon); }
 }
 
-/* Logo inside orb */
-.breathing-orb img {
-    width: 130px;
-    filter: drop-shadow(0 0 20px rgba(255,215,0,0.9));
+@keyframes riseLotus {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-120vh); }
 }
 
-/* Orbiting Lotus */
-.orbiting-lotus {
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    top: 50%;
-    left: 50%;
-    transform-origin: -120px -120px; /* radius of orbit */
-    animation: lotusOrbit 6s linear infinite;
-    filter: drop-shadow(0 0 15px rgba(255,215,0,1));
+@keyframes swayLotus {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
 }
 
-/* Breathing animation */
-@keyframes orbBreath {
-    0%   { transform: scale(0.92); box-shadow: 0 0 25px rgba(255,215,0,0.7); }
-    50%  { transform: scale(1.08); box-shadow: 0 0 55px rgba(255,215,0,1); }
-    100% { transform: scale(0.92); box-shadow: 0 0 25px rgba(255,215,0,0.7); }
+@keyframes shimmerLotus {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
 }
 
-/* Orbit animation */
-@keyframes lotusOrbit {
-    0%   { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .hero {
+        padding: var(--space-lg) var(--space-sm);
+    }
+
+    .hero-title {
+        font-size: 2.4rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.05rem;
+    }
+
+    .device-previews {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .value-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-list {
+        grid-template-columns: 1fr;
+    }
+
+    .trust-cards {
+        grid-template-columns: 1fr;
+    }
+
+    #breathing-orb-container {
+        bottom: var(--space-sm);
+        right: var(--space-sm);
+    }
 }
 
 @media (max-width: 480px) {
-
-    /* GLOBAL PANEL FIX */
-    header, section, footer {
-        padding: 20px 4% !important;
-        margin: 15px auto !important;
-        border-radius: 12px !important;
-        backdrop-filter: blur(4px) !important;
-    }
-
-    /* HERO */
-    .hero h1 {
-        font-size: 1.7rem !important;
-        line-height: 1.2 !important;
-    }
-
-    .hero p {
-        font-size: 1rem !important;
-        margin-bottom: 20px !important;
+    .hero-title {
+        font-size: 2.1rem;
     }
 
     .zenzone-logo {
-        width: 110px !important;
+        width: 150px;
     }
 
-    /* STORE BUTTONS */
-    .store-buttons {
-        flex-direction: column !important;
-        gap: 18px !important;
-        align-items: center !important;
-    }
-
-    /* DEVICE PREVIEWS */
-    .device-preview {
-        width: 140px !important;
-        height: auto !important;
-        margin-top: 10px !important;
-    }
-
-    /* FEATURE CARDS */
-    .feature {
-        width: 100% !important;
-        min-width: unset !important;
-        padding: 25px !important;
-    }
-
-    /* TRUST CARDS */
-    .trust-card {
-        width: 100% !important;
-        min-width: unset !important;
-        padding: 25px !important;
-    }
-
-    /* BREATHING ORB */
-    .breathing-orb {
-        width: 140px !important;
-        height: 140px !important;
-        box-shadow: none !important;
-    }
-
-    /* FOOTER */
-    .footer-logo {
-        width: 110px !important;
-    }
-}
-@media (max-width: 768px) {
-
-    header, section, footer {
-        padding: 35px 6% !important;
-    }
-
-    .store-buttons {
-        flex-wrap: wrap !important;
-        gap: 25px !important;
+    .cta-btn img,
+    .store-buttons img {
+        width: 160px;
     }
 
     .device-preview {
-        width: 180px !important;
-    }
-
-    .feature,
-    .trust-card {
-        width: 90% !important;
-    }
-
-    .breathing-orb {
-        width: 170px !important;
-        height: 170px !important;
+        width: 200px;
     }
 }
-@media (max-width: 1024px) {
 
-    header, section, footer {
-        padding: 45px 8% !important;
-    }
-
-    .feature,
-    .trust-card {
-        width: 45% !important;
-    }
-
-    .device-preview {
-        width: 220px !important;
-    }
-
-    .breathing-orb {
-        width: 190px !important;
-        height: 190px !important;
-    }
-}
-/* Floating Lotus Container */
-.floating-lotus {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-    position: relative;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 1.2s ease;
-    z-index: 5; /* FIXED — brings lotus above nebula */
+/* FINAL FIX — TRUST SECTION STORE BUTTONS */
+.trust .store-buttons a img {
+    width: 140px !important;
+    height: auto;
+    filter: drop-shadow(var(--shadow-gold));
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-
-/* Lotus Image */
-.floating-lotus img {
-    width: 160px; /* slightly larger for visibility */
-    animation: lotusFloat 4s ease-in-out infinite,
-               lotusRotate 12s linear infinite,
-               lotusPulse 3s ease-in-out infinite,
-               lotusShimmer 6s ease-in-out infinite;
-    filter: drop-shadow(0 0 35px rgba(200, 120, 255, 1))
-            drop-shadow(0 0 55px rgba(255, 215, 0, 0.8));
+.trust .store-buttons a img:hover {
+    transform: translateY(-4px) scale(1.05);
+    filter: drop-shadow(0 0 35px rgba(217,168,108,0.75));
+}
+/* Resize store buttons inside the trust-cta section */
+.trust-cta a img {
+    width: 140px !important;   /* Adjust size here */
+    height: auto;
+    filter: drop-shadow(var(--shadow-gold));
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-/* Floating Up/Down */
-@keyframes lotusFloat {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0px); }
+.trust-cta a img:hover {
+    transform: translateY(-4px) scale(1.05);
+    filter: drop-shadow(0 0 35px rgba(217,168,108,0.75));
 }
 
-/* Slow Rotation */
-@keyframes lotusRotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+#zz-play-btn {
+    padding: 14px 32px;
+    font-size: 1.1rem;
+    border-radius: var(--radius-soft);
+    background: var(--neon);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: var(--shadow-neon);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Gentle Pulse */
-@keyframes lotusPulse {
-    0% { filter: drop-shadow(0 0 25px rgba(180, 90, 255, 0.6)); }
-    50% { filter: drop-shadow(0 0 45px rgba(200, 120, 255, 1)); }
-    100% { filter: drop-shadow(0 0 25px rgba(180, 90, 255, 0.6)); }
+#zz-play-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 0 40px rgba(255,78,205,0.8);
 }
 
-/* Cosmic Shimmer */
-@keyframes lotusShimmer {
-    0% { opacity: 0.9; }
-    50% { opacity: 1; }
-    100% { opacity: 0.9; }
+#music-visualizer {
+    width: 100%;
+    height: 200px;
+    display: block;
+    margin-top: 30px;
+    filter: drop-shadow(0 0 25px rgba(255,78,205,0.6));
+}
+.spotify-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 20px;
+    padding: 14px 26px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-radius: var(--radius-soft);
+    background: #1DB954; /* Spotify green */
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 0 25px rgba(29,185,84,0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Floating Sparkles */
-.lotus-sparkle {
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(200,150,255,0.6) 60%, transparent 100%);
-    border-radius: 50%;
-    animation: sparkleFloat 5s ease-in-out infinite;
-    pointer-events: none;
+.spotify-btn img {
+    width: 22px;
+    height: 22px;
 }
 
-@keyframes sparkleFloat {
-    0% { transform: translateY(0px) scale(1); opacity: 1; }
-    50% { transform: translateY(-40px) scale(1.4); opacity: 0.8; }
-    100% { transform: translateY(0px) scale(1); opacity: 1; }
+.spotify-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 0 40px rgba(29,185,84,0.9);
+}
+.zz-song-info {
+    text-align: center;
+    margin-bottom: 16px;
 }
 
-/* Scroll Activated Animation */
-.floating-lotus.visible {
-    opacity: 1; /* fixed from 3 to 1 */
-    transform: translateY(0px);
+.zz-song-title {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 700;
+    background: var(--neon);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: var(--shadow-neon);
 }
 
-/* .nebula-particles {
-    display: none;
-} */
-
-/* Background gradient animation */
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+.zz-song-artist {
+    display: block;
+    margin-top: 6px;
+    font-size: 1rem;
+    color: var(--gold);
+    opacity: 0.9;
+}
+/* ZEN ZONE SPOTIFY BUTTON */
+.zz-spotify-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 32px;
+    border-radius: var(--radius-soft);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--gold-border);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-light);
+    box-shadow: 0 0 25px rgba(217,168,108,0.35),
+                0 0 35px rgba(255,78,205,0.35);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Background lotus floating */
-@keyframes bgLotusFloat {
-    0% { background-position: center 140px; }
-    50% { background-position: center 110px; }
-    100% { background-position: center 140px; }
+.zz-spotify-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 0 45px rgba(217,168,108,0.65),
+                0 0 55px rgba(255,78,205,0.65);
 }
 
-/* Background lotus shimmer */
-@keyframes bgLotusShimmer {
-    0% { filter: brightness(1); }
-    50% { filter: brightness(1.25); }
-    100% { filter: brightness(1); }
+.zz-spotify-icon {
+    width: 80px;   /* increase from 28px or whatever you had */
+    height: 80px;
+    filter: drop-shadow(0 0 12px rgba(217,168,108,0.6));
+    transition: transform 0.3s ease;
+}
+.zz-spotify-btn {
+    animation: zzPulse 4s ease-in-out infinite;
+}
+
+@keyframes zzPulse {
+    0% { box-shadow: 0 0 25px rgba(217,168,108,0.35); }
+    50% { box-shadow: 0 0 45px rgba(217,168,108,0.65); }
+    100% { box-shadow: 0 0 25px rgba(217,168,108,0.35); }
+}
+
+.visualizer-container {
+    text-align: center;
+    margin: 40px auto;
+}
+
+#music-visualizer {
+    width: 100%;
+    height: 200px;
+    display: block;
+    margin-top: 30px;
+    background: rgba(255,255,255,0.05); /* subtle background so it’s visible */
+    border-radius: var(--radius-soft);
+    box-shadow: 0 0 40px rgba(217,168,108,0.25);
+    filter: drop-shadow(0 0 25px rgba(255,78,205,0.6));
 }
